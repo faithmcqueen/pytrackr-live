@@ -1,0 +1,20 @@
+{% extends "PyTraker/header.html" %}
+
+{% block content %}
+
+<h1>List of {{ user.profile.firstname }} {{ user.profile.lastname }}'s Work Diaries</h1>
+<a href= "/PyTraker/workdiary_add" class="new-btn">Add Work Diary</a>
+
+    {% if all_workdiary %}
+        <div class="list">
+        {% for workdiary in all_workdiary %}
+            {% if workdiary.userID == request.user %}
+                <p class="list-item"><a href="/PyTraker/workdiary_detail/{{ workdiary.id }}">{{ workdiary.name }} | {{ workdiary.projectID.name }} | {{workdiary.date }}</a></p>
+            {% endif %}
+        {% endfor %}
+        </div>
+    {% else %}
+        <p> No Work Diaries yet!</p>
+    {% endif %}
+
+{% endblock %}

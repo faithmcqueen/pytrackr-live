@@ -1,0 +1,17 @@
+{% extends "PyTraker/header.html" %}
+
+{% block content %}
+
+<h1>  Search Results  </h1>
+{% if object_list %}
+    <div class="list-group">
+{% for project in object_list %}
+<a href="/PyTraker/details_project/{{ project.id }}" class="list-group-item list-group-item-action">{{ project.name }}</a>
+{% endfor %}
+
+</div>
+{% else %}
+<p> No projects found!</p>
+{% endif %}
+
+{% endblock %}

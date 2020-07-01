@@ -1,0 +1,20 @@
+{% extends "PyTraker/header.html" %}
+
+{% block content %}
+<div class="page-wrap">
+<h1>{{ user }}, here are all of your notes</h1>
+<button type="button" class="new-btn" onclick="window.location.href='/PyTraker/noteboard-create';">Add Note</button>
+<div class="container">
+    {% for note in notes %}
+        <div class="card nb-card">
+          <div class="card-body">
+            <p class="card-text">{{ note.note }}</p>
+            <a href="/PyTraker/noteboard-update/{{note.id}}" class="new-btn">Update</a>
+            <a href="/PyTraker/noteboard-delete/{{note.id}}" class="delete-btn">Delete</a>
+          </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+</div>

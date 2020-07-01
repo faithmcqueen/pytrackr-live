@@ -1,0 +1,14 @@
+{% extends "PyTraker/header.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="alert alert-danger" role="alert">
+            Are you sure you want to delete your task:  " {{ tasks.name }} " ?
+
+    </div>
+
+    <a href="/PyTraker/delete_project_conf/{{ tasks.id }}"  class="delete-btn"  id ='{{ tasks.id }}'>Delete</a>
+    <a href="/PyTraker/index" class="new-btn" >Cancel</a>
+
+</div>
+{% endblock %}

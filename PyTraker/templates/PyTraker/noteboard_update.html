@@ -1,0 +1,23 @@
+{% extends "PyTraker/header.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <form method="POST" action="/PyTraker/noteboard-update/{{note.id}}"> {% csrf_token %}
+        <div class="input-group nb-new">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Update Note</span>
+          </div>
+          <textarea name="updatedText" class="form-control"
+                    aria-label="With textarea" autofocus required>{{ note.note }} </textarea>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <button type="submit" class="new-btn">Update Note</button>
+            <a href="/PyTraker/noteboard" class="delete-btn">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

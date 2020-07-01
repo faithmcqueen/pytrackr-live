@@ -1,0 +1,190 @@
+{% extends "PyTraker/header.html" %}
+
+{% block content %}
+<div class="page-wrap">
+<div class="container">
+<div class="card">
+  <h5 class="card-header">Project Details for: {{ project.name }}</h5>
+  <div class="card-body">
+    <h5 class="card-title">Client: {{ project.clientID }}</h5>
+    <p class="card-text">Description: {{ project.description }}</p>
+          <p class="card-text">Start Date: {{ project.startDate.date }}</p>
+          <p class="card-text">Due Date: {{ project.dueDate.date }}</p>
+          <p class="card-text">Rate: ${{ project.payRate }}</p>
+
+
+
+    <a href="/PyTraker/edit_project/{{ project.id }}" class="new-btn">Edit</a>
+    <a href="/PyTraker/delete_project/{{ project.id }}"  class="delete-btn"  id ='{{project.id}}'>Delete</a>
+      <!--Check if an invoice exist -->
+      {% if invoice == 'false' %}
+      <a href="/PyTraker/new_invoice/{{ project.id }}" class="new-btn">Create Invoice</a>
+
+      {% else %}
+
+      <a href="/PyTraker/invoice/{{ project.id }}" class="new-btn">View Invoice</a>
+    {% endif %}
+
+  </div>
+</div>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script>
+    var status = 0;//0 for stop and 1 for running
+    var time = 0;
+    function start(){
+        status = 1;
+        document.getElementById('start').disabled = true;
+        timer()
+    }
+    function stop(){
+        status = 0;
+        document.getElementById('start').disabled = false;
+        var now = document.getElementById('fulltime').innerHTML;
+        var spent = document.getElementById('timer').innerHTML;
+        var hoursspent = document.getElementById('counterhours').innerHTML;
+        console.log(hoursspent);
+        document.getElementById('totaltime').value = spent;
+        document.getElementById('totalhours').value = hoursspent;
+        console.log(document.getElementById('totalhours').value);
+        var spentdate = document.getElementById('spentdate').innerHTML;
+        //var daylight = document.getElementById('daylight').innerHTML;
+        now = now.split(/\D/);
+        spent = spent.split(/\D/);
+        var X1 = parseInt(now[0])*60*60 + parseInt(now[1])*60 + parseInt(now[2]);
+        var X2 = parseInt(spent[0])*60*60 + parseInt(spent[1])*60 + parseInt(spent[2]);
+        var s = X1 + X2;
+        var m=Math.floor(s/60); s=s%60;
+        var h=Math.floor(m/60); m=m%60;
+        var d=Math.floor(h/24); h=h%24;
+        if(h < 10){
+            h = "0" + h;
+        }
+        if( m <10){
+            m = "0" + m;
+        }if(s<10){
+            s="0"+s;
+        }
+
+        var spenttime = h+':'+m+':'+s;
+        document.getElementById('stoptime').value = spentdate+" "+spenttime;
+
+    }
+    function reset(){
+        status =0;
+        time = 0;
+        document.getElementById('start').disabled = false;
+        document.getElementById('timer').innerHTML = "00:00:00:00";
+        document.getElementById('counterhours').innerHTML = 0;
+        location.reload();
+    }
+    function timer(){
+        if(status == 1){
+            setTimeout(function(){
+                time++;
+                //Total hours per timer
+                var totalhours = time/100/3600;
+
+                var hours = Math.floor(time/100/3600);
+                var min = Math.floor(time/100/60);
+                var sec = Math.floor(time/100);
+                var msec = time % 100;
+                if(hours < 10){
+                    hours = "0" + hours;
+                }
+                if( min <10){
+                    min = "0" + min;
+                }
+                if(sec >= 60){
+                    sec = sec % 60;
+                }
+                if(sec <10){
+                    sec = "0" +sec;
+                }
+                if(msec < 10){
+                    msec = "0"+msec;
+                }
+                document.getElementById('timer').innerHTML = hours +":"+min+":"+sec+":"+msec;
+                document.getElementById('counterhours').innerHTML = totalhours;
+                timer();
+
+
+            },10);
+        }
+    }
+
+</script>
+<div class="timer-wrap">
+<div class="summary-container">
+        <div class="card">
+          <h5 class="card-header">Your Past Spent Time: {{ project.name }}</h5>
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            {% for time in timer %}
+
+            <p class="card-text">Your Last Spent Time:{{time.totaltime }} on {{ time.startTime }} on
+                {{time.task}}
+            </p>
+
+            {% endfor %}
+          </div>
+        </div>
+    </div>
+    <div class="watch-container">
+    <div>
+        <section id="stopWatch">
+            <p id="timer"  class="alert alert-primary" role="alert"> Time : 00:00:00 </p>
+            <button id="start" class="new-btn" onclick="start()"> Start </button>
+            <button id="stop" class="delete-btn" onclick="stop()"> Stop </button>
+            <button id="reset" class="reset-btn" onclick="reset()"> Reset </button>
+            <p id="fulltime" style="display:none">{{ time }}</p>
+            <p id="spentdate" style="display:none">{{ spentdate }}</p>
+        </section>
+        <form method="post" action="">
+            {% csrf_token %}
+            <label>Start Time:</label>
+            <input type="text" value="{{ stime }}" id="stime" name="stime"/><br/>
+            <label>End Time:</label>
+            <input type="text" value="" id="stoptime" name="stoptime" />
+            <input type="hidden" id="totaltime" name="totaltime" />
+            <br/><label>Task:</label>
+            <input type="hidden" id="totalhours" name="totalhours" />
+            <input type="hidden" id="counterhours" name="counterhours" />
+            <label>Task:</label>
+            <select name="task">
+                {% for t in task %}
+                <option value="{{ t.id }}" name="task">{{ t.name }}</option>
+                {% endfor %}
+            </select>
+            <input type="hidden" id="projectid" name="projectid" value="{{ project.id }}" />
+            <br/><input type="submit" value="Submit" class="new-btn" name="submit" />
+        </form>
+    </div>
+    </div>
+</div>
+</div>
+
+
+
+    <div class="card">
+        <h5 class="card-header">Current tasks for {{ project.name }}</h5>
+        <div class="card-body">
+        {% if task %}
+        <div class="list">
+        {% for t in task %}
+            {% if t.complete == False %}
+        <p class="list-item"><a href="/PyTraker/task_detail/{{ t.id }}" class="d-inline-flex p-2">{{ t.name }}</a>
+            <span><a href="/PyTraker/change_status/{{ t.id }}" class="complete-btn">&check;</a></span></p>
+                {% else %}
+                <p class="list-item"><a href="/PyTraker/task_detail/{{ t.id }}" class="d-inline-flex p-2">{{ t.name }}</a>
+                <span>Task Completed</span></p>
+            {%  endif %}
+        {% endfor %}
+
+        </div>
+        {% else %}
+            <p>You don't have any tasks yet! <a class="new-btn" href="/PyTraker/new_task">Add a task.</a></p>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

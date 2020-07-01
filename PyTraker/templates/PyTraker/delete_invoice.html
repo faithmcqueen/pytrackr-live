@@ -1,0 +1,14 @@
+{% extends "PyTraker/header.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="alert alert-danger" role="alert">
+            Are you sure you want to delete the invoice for "{{ invoice.projectID.name }}"  ?
+
+    </div>
+
+    <a href="/PyTraker/delete_invoice_conf/{{ invoice.id }}"  class="new-btn"  id ='{{ invoice.id }}'>Delete</a>
+    <a href="/PyTraker/index" class="delete-btn" >Cancel</a>
+
+</div>
+{% endblock %}

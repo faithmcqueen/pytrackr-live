@@ -1,0 +1,21 @@
+{% extends "PyTraker/header.html" %}
+{% block content %}
+<div class="page-wrap">
+<div class="container">
+<div class="card">
+    <div class="card-header">
+  <h5 class="d-inline-flex p-2">{{ tasks.name }}</h5>
+    <a href="/PyTraker/change_status/{{ tasks.id }}" class="complete-btn">&check;</a>
+        </div>
+  <div class="card-body">
+      <p class="card-text">Project: <a href="/PyTraker/details_project/{{ tasks.projectID.id }}">{{ tasks.projectID.name }}</a></p>
+    <p class="card-text">Task Description: {{ tasks.description }}</p>
+      <p class="card-text">Task Due On: {{ tasks.due_date }}</p>
+
+    <a href="/PyTraker/edit_task/{{ tasks.id }}" class="new-btn">Edit</a>
+    <a href="/PyTraker/delete_task/{{ tasks.id }}"  class="delete-btn"  id ='{{project.id}}'>Delete</a>
+  </div>
+</div>
+</div>
+{% endblock %}
+</div>

@@ -1,0 +1,23 @@
+{% extends "PyTraker/header.html" %}
+
+{% block content %}
+<div class="page-wrap">
+<div class="container">
+  <div class="card">
+    <h5 class="card-header">{{ profile.firstname }} {{ profile.lastname }}'s Profile</h5>
+    <div class="card-body">
+      <p class="card-title">Username: {{ profile.user.username }}</p>
+      <p class="card-text">First Name: {{ profile.firstname }}</p>
+      <p class="card-text">Last Name: {{ profile.lastname }}</p>
+      <p class="card-text">Phone Number: {{ profile.phonenumber }}</p>
+      <p class="card-text">Email: {{ profile.email }}</p>
+
+      <a href="/PyTraker/user_profile_edit/{{ user.id }}" class="new-btn">Edit</a>
+      <a href="/PyTraker/index" class="delete-btn" >Back</a>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+</div>

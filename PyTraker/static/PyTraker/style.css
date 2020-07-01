@@ -1,0 +1,86 @@
+#logo{
+    max-width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-circle {
+    border-radius: 50%;
+}
+
+.btn {
+    margin-top:1.5em;
+    margin-bottom:1.5em;
+}
+
+#logout-btn {
+    margin-top:0;
+    margin-left:0.5em;
+    margin-right:0.5em;
+    margin-bottom:0;
+}
+
+.nb-card{
+    display: inline-block;
+    margin-bottom: 5px;
+    width: 350px;
+    vertical-align: top;
+    border: 2px solid black;
+}
+
+.nb-card p{
+    height: 200px;
+    overflow-y: auto;
+}
+
+.nb-update{
+    background: orange;
+    padding: 5px;
+    color: black;
+    border-radius: 20%;
+}
+
+.nb-delete{
+    background: red;
+    padding: 5px;
+    color: black;
+    border-radius: 20%;
+}
+
+.nb-new{
+    margin-top: 20px;
+}
+
+.nb-new textarea{
+    height: 200px;
+    min-height: 50px;
+}
+
+.errorlist li{
+    color: red;
+}
+
+#logged-out {
+    width: 30%;
+    margin-bottom:3em;
+}
+.alert {
+    text-align:center;
+    margin:auto;
+    font-weight:bold;
+}
+
+#diary-comment-title {
+    color: #ED9B40;
+}
+
+#delete-container {
+    text-align:center;
+    background-color: #f9f9f9;
+    width:60%;
+    padding:1.5em;
+    margin-bottom:3em;
+    border-radius:10px;
+    border:solid 1px #e1e1e1;
+}

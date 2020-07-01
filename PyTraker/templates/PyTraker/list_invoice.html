@@ -1,0 +1,18 @@
+{% extends "PyTraker/header.html" %}
+
+{% block content %}
+
+<h1>{{ user }}, here are your current invoices</h1>
+{% if all_invoices %}
+    <div class="list">
+    {% for invoice in all_invoices %}
+        <p class="list-item"><a href="/PyTraker/invoice/{{ invoice.projectID_id }}" class="">{{ invoice.projectID.name }}</a></p>
+    {% endfor %}
+
+</div>
+{% else %}
+<p> You don't have any invoices yet</p>
+{% endif %}
+
+
+{% endblock %}

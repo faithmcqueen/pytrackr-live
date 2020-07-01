@@ -1,0 +1,24 @@
+{% extends "PyTraker/header.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="card" style="width: 40em; margin: auto;">
+        <h3 class="card-header">Sign Up</h3>
+        <div class="card-body">
+            <form method="post"  id="signup_form">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+
+                {{ form.errors}}
+            <div id="reg-btn">
+            <input type="submit" class="btn btn-primary" value="Sign up">
+            </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

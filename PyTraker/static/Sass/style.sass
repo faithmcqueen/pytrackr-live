@@ -1,0 +1,197 @@
+// Variables
+$primary: #b0dcda
+$accent: #ED9B40
+$neutral: #f7f7f7
+$dark: #593d4a
+$secondary-accent: #BA3B46
+$body-font: 'Open Sans', sans-serif
+
+//Mixin styles
+%button-style
+  padding: 5px 10px
+  border-radius: 0
+  color: $neutral
+  margin: 1.5em 0
+  &:hover
+    text-decoration: none
+    background-color: $dark
+    color: $neutral
+
+
+//General Styles
+body
+  background-color: $neutral
+  font-family: $body-font
+
+a
+  text-decoration: none
+  color: $primary
+  &:hover
+    text-decoration: none
+    color: $dark
+
+.page-wrap
+  margin-top: 1em
+
+.project-wrap
+  margin-top: 1em
+
+button
+  border: none
+  [type=button]
+    border: none
+    @extend %button-style
+
+//Header styles
+nav
+  background-color: $dark
+  li a
+    color: $neutral
+    &:hover
+      color: $primary
+      text-decoration: none
+.navbar
+  background-color: $dark !important
+  .dropdown-menu
+    background-color: $dark !important
+.nav-item a
+  color: $neutral !important
+  font-size: 1.25em
+
+#logout-btn
+  @extend %button-style
+  background-color: $dark
+  margin-top: 0
+  margin-left: 0.5em
+  margin-right: 0.5em
+  &:hover
+    background-color: black
+
+.logo-container
+  display: flex
+  align-items: flex-start
+  justify-content: space-between
+
+#logo
+  max-width: 30%
+  height: auto
+  margin-left: auto
+  margin-right: auto
+  margin-top: 0.75em
+  align-self: flex-start
+
+.search-wrapper
+  display: flex
+  width: 50%
+
+.greetuser
+  display: flex
+  align-self: flex-end
+  width: 40%
+  font-size: 1.25em
+  margin-top: 1em
+  span
+    margin-top: 0.25em
+
+.search-form
+  margin: 0
+  input[type=text]
+    padding: 4px
+    border: 1px solid lightgrey
+    border-radius: 0
+
+
+//Notes styles
+.nb-card
+  display: inline-block
+  margin-bottom: 5px
+  width: 350px
+  vertical-align: top
+  border: 2px solid $dark
+  p
+    height: 200px
+    overflow-y: auto
+
+.nb-update
+  background: $accent
+  padding: 5px
+  color: $dark
+
+.nb-delete
+  background: $secondary-accent
+  padding: 5px
+  color: $dark
+  border-radius: 20%
+
+.nb-new
+  margin-top: 20px
+  textarea
+    height: 200px
+    min-height: 50px
+
+//Button styles
+.start-btn
+  background-color: $primary
+  @extend %button-style
+  &:hover
+    background-color: $dark
+
+.stop-btn
+  background-color: $secondary-accent
+  @extend %button-style
+
+.new-btn
+  @extend %button-style
+  background-color: $primary
+  color: $dark
+
+.delete-btn
+  @extend %button-style
+  background-color: $secondary-accent
+
+.complete-btn
+  background-color: $primary
+  color: $dark
+  border-radius: 50%
+  padding: 5px
+  float: right
+  &:hover
+    text-decoration: none
+    background-color: $dark
+    color: $neutral
+
+input[type=submit]
+  border: 0
+
+.reset-btn
+  @extend %button-style
+  background-color: $accent
+
+//List styles
+.list
+  margin-top: 1em
+  width: 100%
+  .list-item
+    background: #fff
+    border: 1px solid lightgrey
+    padding: 0.5em
+    a
+      color: $dark
+
+//Project styles
+
+.timer-wrap
+  display: flex
+  margin: 2em 0
+  justify-content: space-between
+
+.summary-container
+  display: flex
+  flex: 2
+  float: right
+
+.watch-container
+  display: flex
+  flex: 1
+  align-content: stretch
+

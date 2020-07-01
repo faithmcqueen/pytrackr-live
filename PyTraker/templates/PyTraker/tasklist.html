@@ -1,0 +1,21 @@
+{% extends "PyTraker/header.html" %}
+
+{% block content %}
+<div class="page-wrap">
+<h1> {{ user }}, here are your current tasks:</h1>
+    <a href="/PyTraker/new_task" class="new-btn">New Task</a>
+{% if all_task_list %}
+    <div class="list">
+{% for tasks in all_task_list %}
+
+<p class="list-item"><a href="/PyTraker/task_detail/{{ tasks.id }}" class="d-inline-flex p-2">{{ tasks.name }}</a> for {{ tasks.projectID.name }} due on {{ tasks.due_date }}
+    <span><a href="/PyTraker/change_status/{{ tasks.id }}" class="complete-btn">&check;</a></span></p>
+{% endfor %}
+
+</div>
+{% else %}
+    <p>You don't have any tasks yet! <a href="/PyTraker/new_task">New Task</a></p>
+{% endif %}
+
+{% endblock %}
+</div>

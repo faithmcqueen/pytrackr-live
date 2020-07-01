@@ -1,0 +1,19 @@
+{% extends "PyTraker/header.html" %}
+
+{% block content %}
+<h1>New Invoice</h1>
+<h2>{{ note }}</h2>
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <!--{% csrf_token %}
+    {{ invoice_form }}-->
+    <div>
+        <input class="new-btn" type="submit" value="Create">
+        <a class="delete-btn" href="/PyTraker/index">Cancel</a>
+    </div>
+
+</form>
+
+
+{% endblock %}

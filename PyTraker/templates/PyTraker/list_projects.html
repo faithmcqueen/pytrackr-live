@@ -1,0 +1,19 @@
+{% extends "PyTraker/header.html" %}
+
+{% block content %}
+<div class="page-wrap">
+<h1>{{ user }}, here are your current projects:</h1>
+    <a href="/PyTraker/new_project" class="new-btn">New Project</a>
+{% if project_list %}
+    <div class="list">
+{% for project in project_list %}
+    <p class="list-item"><a href="/PyTraker/details_project/{{ project.id }}">{{ project.name }}</a></p>
+{% endfor %}
+
+</div>
+{% else %}
+<p> No projects yet!<a href="/PyTraker/new_project">New Project</a></p>
+{% endif %}
+
+{% endblock %}
+</div>
